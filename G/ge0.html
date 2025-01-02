@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn and Earn Profile</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <style>
+    /* Reset and Box Sizing */
+    * {
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body Styling */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff;
+      color: #001f54;
+      padding-top: 60px; /* Ensure content is not hidden behind the fixed navbar */
+    }
+
+    /* Top Navigation Bar */
+    .topnav {
+      position: fixed; /* Fix the navbar to the top */
+      top: 0; /* Stick to the top */
+      left: 0;
+      right: 0;
+      z-index: 1000; /* Ensure the navbar stays on top of other elements */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #001f54;
+      padding: 10px 20px;
+      flex-wrap: nowrap;
+    }
+
+    .topnav .logo {
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: #ddd;
+    }
+
+    .topnav a {
+      text-decoration: none;
+      color: #ddd;
+      padding: 10px 16px;
+      text-align: center;
+    }
+
+    .topnav a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+
+    .topnav .nav-links {
+      display: flex;
+      gap: 10px;
+    }
+
+    @media screen and (max-width: 600px) {
+      .topnav {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* Header */
+    .header {
+      background-color: #e7f0fc;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .header .logo {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    .categories {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .category {
+      width: 300px;
+      background-color: #f0f8ff;
+      border: 2px solid #001f54;
+      border-radius: 10px;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: transform 0.3s, background-color 0.3s;
+    }
+
+    .category label {
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 800px;
+      padding: 20px;
+      background-color: #e7f0fc;
+      box-shadow: 0px 0px 20px 4px rgb(47 53 109);
+      border-radius: 8px;
+    }
+
+    h2 {
+      color: #2a3d66;
+    }
+
+    ul {
+      list-style-type: disc;
+      margin-left: 20px;
+    }
+
+    p {
+      line-height: 1.6;
+    }
+
+    .section {
+      margin-bottom: 20px;
+    }
+    /* Submit Button Styles */
+#submitBtn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.1em;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#submitBtn:hover {
+    background-color: #218838;
+}
+  </style>
+</head>
+<body>
+  <!-- Top Navigation Bar -->
+  <div class="topnav">
+    <div class="logo">LOGO</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">MCQs on Highlights of Geography</div>
+  </header>
+
+  <!-- MCQ Section -->
+  <section class="mcq">
+    <div class="categories">
+      <div class="category">
+        <div class="container">
+
+            
+    <main>
+        <h2>Test your knowledge!</h2>
+        <form id="quizForm">
+            <!-- Quiz questions will be inserted here dynamically -->
+        </form>
+        <button type="button" id="submitBtn">Submit Quiz</button>
+        <p id="score" style="display: none;">Your score: <span id="scoreValue"></span> / <span id="totalQuestions"></span></p>
+
+    </main>
+
+    <script>
+        // Quiz questions and options
+        const questions = [
+   {
+      question: 'Who coined the term "Geography"?',
+      options: ['Aristotle', 'Eratosthenes', 'Hipparchus', 'Ptolemy'],
+      answer: 'Eratosthenes'
+    },
+    {
+      question: 'What does "Geo" mean in Geography?',
+      options: ['Map', 'Description', 'Earth', 'Study'],
+      answer: 'Earth'
+    },
+    {
+      question: 'Who is called the "Father of Geography"?',
+      options: ['Aristotle', 'Eratosthenes', 'Anaximander', 'Ptolemy'],
+      answer: 'Eratosthenes'
+    },
+    {
+      question: 'What book did Eratosthenes author?',
+      options: ['Historia Naturalia', 'Aryabhattiyam', 'Geographica', 'Ges Periodos'],
+      answer: 'Geographica'
+    },
+    {
+      question: 'Who divided circles into 360°?',
+      options: ['Eratosthenes', 'Hecataeus', 'Hipparchus', 'Aristotle'],
+      answer: 'Hipparchus'
+    },
+    {
+      question: 'What instrument did Hipparchus invent?',
+      options: ['Compass', 'Sextant', 'Astrolabe', 'Sundial'],
+      answer: 'Astrolabe'
+    },
+    {
+      question: 'Who proved Earth\'s spherical shape using reasoning?',
+      options: ['Aristotle', 'Ptolemy', 'Herodotus', 'Strabo'],
+      answer: 'Aristotle'
+    },
+    {
+      question: 'Who is considered the "Father of Cartography"?',
+      options: ['Anaximander', 'Eratosthenes', 'Strabo', 'Hecataeus'],
+      answer: 'Anaximander'
+    },
+    {
+      question: 'Who wrote "Historia Naturalia"?',
+      options: ['Ptolemy', 'Pliny', 'Strabo', 'Al-Baruni'],
+      answer: 'Pliny'
+    },
+    {
+      question: 'Who first proposed integrating history and geography?',
+      options: ['Herodotus', 'Hipparchus', 'Aristotle', 'Varah Mihir'],
+      answer: 'Herodotus'
+    },
+    {
+      question: 'During the Dark Age of Geography, innovation in Christian countries was:',
+      options: ['Flourishing', 'Declining', 'Static', 'Revolutionary'],
+      answer: 'Declining'
+    },
+    {
+      question: 'Which ancient Indian text describes stars and seasons?',
+      options: ['Rig Veda', 'Aryabhattiyam', 'Panchasiddhantika', 'Surya Siddhanta'],
+      answer: 'Rig Veda'
+    },
+    {
+      question: 'Who introduced the term "Bhugol"?',
+      options: ['Aryabhatta', 'Varah Mihir', 'Bhaskaracharya', 'Brahmagupta'],
+      answer: 'Aryabhatta'
+    },
+    {
+      question: 'Which Indian scholar calculated Earth\'s circumference as 24,835 miles?',
+      options: ['Brahmagupta', 'Aryabhatta', 'Bhaskaracharya', 'Varah Mihir'],
+      answer: 'Aryabhatta'
+    },
+    {
+      question: 'Who discussed eclipses in Panchasiddhantika?',
+      options: ['Bhaskaracharya', 'Aryabhatta', 'Varah Mihir', 'Pliny'],
+      answer: 'Varah Mihir'
+    },
+    {
+      question: 'What was India called in the Puranas?',
+      options: ['Bharat', 'Aryavarta', 'Jambu Dweep', 'Hindustan'],
+      answer: 'Jambu Dweep'
+    },
+    {
+      question: 'Which Indian scholar proposed gravitational force and Earth\'s spherical shape?',
+      options: ['Aryabhatta', 'Bhaskaracharya', 'Brahmagupta', 'Varah Mihir'],
+      answer: 'Bhaskaracharya'
+    },
+    {
+      question: 'What was the eastern coast of India referred to as?',
+      options: ['Malabar Coast', 'Mahendra Malai', 'Coromandel Coast', 'Konkan Coast'],
+      answer: 'Mahendra Malai'
+    },
+    {
+      question: 'Through which city did the Prime Meridian pass in ancient India?',
+      options: ['Delhi', 'Kashi', 'Ujjain', 'Mathura'],
+      answer: 'Ujjain'
+    },
+    {
+      question: 'Who wrote "Sind Hind"?',
+      options: ['Al-Baruni', 'Al-Khwarizmi', 'Al-Balakhi', 'Eratosthenes'],
+      answer: 'Al-Khwarizmi'
+    },
+    {
+      question: 'What work did Al-Baruni author?',
+      options: ['Geographica', 'Kitab-al-Hind', 'Historia Naturalia', 'Al-Qanun-al-Masudi'],
+      answer: 'Kitab-al-Hind'
+    },
+    {
+      question: 'Who prepared the first climatic atlas?',
+      options: ['Al-Khwarizmi', 'Al-Balakhi', 'Al-Baruni', 'Marco Polo'],
+      answer: 'Al-Balakhi'
+    },
+    {
+      question: 'What institution was established by Caliph Harun-al-Rashid?',
+      options: ['Baitul Hikma', 'University of Baghdad', 'Alexandria Library', 'Alhambra Academy'],
+      answer: 'Baitul Hikma'
+    },
+    {
+      question: 'What did Arabs contribute to geography?',
+      options: ['Seasonal account of monsoons', 'First maps of India', 'The concept of gravity', 'Mapping oceans'],
+      answer: 'Seasonal account of monsoons'
+    },
+    {
+      question: 'Who wrote "Aryabhattiyam"?',
+      options: ['Bhaskaracharya', 'Aryabhatta', 'Varah Mihir', 'Brahmagupta'],
+      answer: 'Aryabhatta'
+    },
+    {
+      question: 'What work did Brahmagupta author?',
+      options: ['Leelavati', 'Aryabhattiyam', 'Brahma Siddhanta', 'Panchasiddhantika'],
+      answer: 'Brahma Siddhanta'
+    },
+    {
+      question: 'Who was the first to measure Earth?',
+      options: ['Thales', 'Hipparchus', 'Eratosthenes', 'Anaximander'],
+      answer: 'Thales'
+    },
+    {
+      question: 'Who translated "Almagest" into Arabic?',
+      options: ['Al-Baruni', 'Al-Balakhi', 'Scholars of Baitul Hikma', 'Marco Polo'],
+      answer: 'Scholars of Baitul Hikma'
+    },
+    {
+      question: 'What work inspired the Great Ages of Discoveries?',
+      options: ['Historia Naturalia', 'Al-Qanun-al-Masudi', 'Ptolemy\'s work', 'Geographica'],
+      answer: 'Ptolemy\'s work'
+    },
+    {
+      question: 'Which 13th-century traveler explored from the Mediterranean to the Pacific?',
+      options: ['Marco Polo', 'Ibn Battuta', 'Vasco da Gama', 'Al-Baruni'],
+      answer: 'Marco Polo'
+    }
+
+        ];
+
+        // Function to dynamically display the quiz questions and options
+        function displayQuestions() {
+            const quizForm = document.getElementById('quizForm');
+            questions.forEach((question, index) => {
+                const questionDiv = document.createElement('div');
+                const questionText = document.createElement('p');
+                questionText.textContent = question.question;
+                questionDiv.appendChild(questionText);
+
+                question.options.forEach(option => {
+                    const label = document.createElement('label');
+                    label.innerHTML = `
+                        <input type="radio" name="answer${index}" value="${option}" required> ${option}
+                    `;
+                    questionDiv.appendChild(label);
+                    questionDiv.appendChild(document.createElement('br'));
+                });
+
+                quizForm.appendChild(questionDiv);
+                quizForm.appendChild(document.createElement('hr'));
+            });
+        }
+
+        // Function to calculate the score
+        function calculateScore() {
+            let score = 0;
+            questions.forEach((question, index) => {
+                const selectedAnswer = document.querySelector(`input[name="answer${index}"]:checked`);
+                if (selectedAnswer && selectedAnswer.value === question.answer) {
+                    score++;
+                }
+            });
+
+            // Display the score
+            document.getElementById('score').style.display = 'block';
+            document.getElementById('scoreValue').textContent = score;
+            document.getElementById('totalQuestions').textContent = questions.length;
+        }
+
+        // Add event listener to the submit button
+        document.getElementById('submitBtn').addEventListener('click', calculateScore);
+
+        // Initialize the quiz
+        displayQuestions();
+    </script>
+
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

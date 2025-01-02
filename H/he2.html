@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn and Earn Profile</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <style>
+    /* Reset and Box Sizing */
+    * {
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body Styling */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff;
+      color: #001f54;
+      padding-top: 60px; /* Ensure content is not hidden behind the fixed navbar */
+    }
+
+    /* Top Navigation Bar */
+    .topnav {
+      position: fixed; /* Fix the navbar to the top */
+      top: 0; /* Stick to the top */
+      left: 0;
+      right: 0;
+      z-index: 1000; /* Ensure the navbar stays on top of other elements */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #001f54;
+      padding: 10px 20px;
+      flex-wrap: nowrap;
+    }
+
+    .topnav .logo {
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: #ddd;
+    }
+
+    .topnav a {
+      text-decoration: none;
+      color: #ddd;
+      padding: 10px 16px;
+      text-align: center;
+    }
+
+    .topnav a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+
+    .topnav .nav-links {
+      display: flex;
+      gap: 10px;
+    }
+
+    @media screen and (max-width: 600px) {
+      .topnav {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* Header */
+    .header {
+      background-color: #e7f0fc;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .header .logo {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    .categories {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .category {
+      width: 300px;
+      background-color: #f0f8ff;
+      border: 2px solid #001f54;
+      border-radius: 10px;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: transform 0.3s, background-color 0.3s;
+    }
+
+    .category label {
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 800px;
+      padding: 20px;
+      background-color: #e7f0fc;
+      box-shadow: 0px 0px 20px 4px rgb(47 53 109);
+      border-radius: 8px;
+    }
+
+    h2 {
+      color: #2a3d66;
+    }
+
+    ul {
+      list-style-type: disc;
+      margin-left: 20px;
+    }
+
+    p {
+      line-height: 1.6;
+    }
+
+    .section {
+      margin-bottom: 20px;
+    }
+    /* Submit Button Styles */
+#submitBtn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.1em;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#submitBtn:hover {
+    background-color: #218838;
+}
+  </style>
+</head>
+<body>
+  <!-- Top Navigation Bar -->
+  <div class="topnav">
+    <div class="logo">LOGO</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">Introduction to History</div>
+  </header>
+
+  <!-- MCQ Section -->
+  <section class="mcq">
+    <div class="categories">
+      <div class="category">
+        <div class="container">
+
+            
+    <main>
+        <h2>Test your knowledge!</h2>
+        <form id="quizForm">
+            <!-- Quiz questions will be inserted here dynamically -->
+        </form>
+        <button type="button" id="submitBtn">Submit Quiz</button>
+        <p id="score" style="display: none;">Your score: <span id="scoreValue"></span> / <span id="totalQuestions"></span></p>
+
+    </main>
+
+    <script>
+        // Quiz questions and options
+        const questions = [
+   {
+      question: 'Where was the Rig Veda composed?',
+      options: ['Kuru-Panchala region', 'Sapta Saindhav region', 'North-West India', 'Gandhar'],
+      answer: 'Sapta Saindhav region'
+    },
+    {
+      question: 'Which Veda is most significant for historical information?',
+      options: ['Yajur Veda', 'Sama Veda', 'Rig Veda', 'Atharva Veda'],
+      answer: 'Rig Veda'
+    },
+    {
+      question: 'Which region is associated with the composition of Yajur Veda and Sama Veda?',
+      options: ['Kuru-Panchala region', 'Gandhar', 'Sapta Saindhav region', 'Kosala'],
+      answer: 'Kuru-Panchala region'
+    },
+    {
+      question: 'Which of the following is more historically important than Yajur Veda and Sama Veda?',
+      options: ['Atharva Veda', 'Brahmanas', 'Upanishads', 'Aranyakas'],
+      answer: 'Atharva Veda'
+    },
+    {
+      question: 'The Vedas emphasize which aspects of Aryan life?',
+      options: ['Political life', 'Social and economic life', 'Scientific advancements', 'Cultural arts'],
+      answer: 'Social and economic life'
+    },
+    {
+      question: 'What is the main focus of Brahmanas?',
+      options: ['Political history', 'Religious rituals and prayers', 'Social customs', 'Insights into states like Kosala and Videha'],
+      answer: 'Religious rituals and prayers'
+    },
+    {
+      question: 'Which Brahmana gives details about the North-West regions like Gandhar and Kuru-Panchala?',
+      options: ['Shatapatha Brahmana', 'Aitareya Brahmana', 'Taittiriya Brahmana', 'Brihadaranyaka Brahmana'],
+      answer: 'Shatapatha Brahmana'
+    },
+    {
+      question: 'What is the main purpose of the Upanishads?',
+      options: ['To describe social customs', 'To document historical events', 'To focus on spiritual learning', 'To explain the duties of kings'],
+      answer: 'To focus on spiritual learning'
+    },
+    {
+      question: 'What is the key idea presented in the Upanishads?',
+      options: ['Political governance', 'Merging of the individual soul with the universal soul', 'Economic prosperity', 'Importance of religious rituals'],
+      answer: 'Merging of the individual soul with the universal soul'
+    },
+    {
+      question: 'What is the time frame for the composition of Vedangas?',
+      options: ['600 BC–200 AD', '1,000 BC–600 BC', '2,500 BC–1,000 BC', '400 BC–400 AD'],
+      answer: '600 BC–200 AD'
+    },
+    {
+      question: 'What is the focus of Smritis in ancient Indian texts?',
+      options: ['Religious ceremonies', 'Social organization and customs', 'Spiritual enlightenment', 'Political and military strategies'],
+      answer: 'Social organization and customs'
+    },
+    {
+      question: 'Who is credited with authoring the Ramayana?',
+      options: ['Ved Vyas', 'Valmiki', 'Kalidasa', 'Bhasa'],
+      answer: 'Valmiki'
+    },
+    {
+      question: 'What does the Ramayana reflect?',
+      options: ['Political, social, and religious conditions', 'Scientific advancements in ancient India', 'Historical accounts of the Maurya dynasty', 'Military conquests of the Mughals'],
+      answer: 'Political, social, and religious conditions'
+    },
+    {
+      question: 'The Mahabharata is authored by:',
+      options: ['Valmiki', 'Kalidasa', 'Bhasa', 'Ved Vyas'],
+      answer: 'Ved Vyas'
+    },
+    {
+      question: 'What is the key theme of the Mahabharata?',
+      options: ['Political and religious life', 'Social customs', 'Cultural heritage of India', 'Astronomical knowledge'],
+      answer: 'Political and religious life'
+    },
+    {
+      question: 'Which event is chronicled in the Mahabharata?',
+      options: ['Harsha\'s empire', 'The Mahabharata war', 'Alexander’s invasion', 'The rise of the Gupta empire'],
+      answer: 'The Mahabharata war'
+    },
+    {
+      question: 'What time period do the Puranas cover in their historical accounts?',
+      options: ['Pre-Historic to Vedic period', 'Gupta period to Medieval period', 'From the beginning to Gupta period', 'Mauryan period to Modern India'],
+      answer: 'From the beginning to Gupta period'
+    },
+    {
+      question: 'What is a key feature of the Puranas?',
+      options: ['Genealogies of dynasties', 'Philosophical teachings', 'Instructions for kings', 'Detailed accounts of battles'],
+      answer: 'Genealogies of dynasties'
+    },
+    {
+      question: 'Which Purana is associated with Vishnu?',
+      options: ['Bhagawat Purana', 'Vishnu Purana', 'Matsya Purana', 'Brahma Purana'],
+      answer: 'Vishnu Purana'
+    },
+    {
+      question: 'The Tripitaka is an important Buddhist text. Which of the following is a part of it?',
+      options: ['Vinaya Pitaka', 'Shatapatha Brahmana', 'Vedantas', 'Mahabharata'],
+      answer: 'Vinaya Pitaka'
+    },
+    {
+      question: 'The Sutta Pitaka is significant because it includes:',
+      options: ['Ambattha Sutta', 'Genealogies of kings', 'Teachings of the Vedas', 'Accounts of Mahabharata'],
+      answer: 'Ambattha Sutta'
+    },
+    {
+      question: 'Which Buddhist text includes the dialogue between Menander and Nagasena?',
+      options: ['Tripitaka', 'Milindpannaho', 'Abhidhamma Pitaka', 'Vinaya Pitaka'],
+      answer: 'Milindpannaho'
+    },
+    {
+      question: 'The Deep Vansha and Maha Vansha provide a history of:',
+      options: ['Mauryan dynasty', 'Sri Lanka', 'Gupta dynasty', 'Buddhist teachings'],
+      answer: 'Sri Lanka'
+    },
+    {
+      question: 'Which of the following texts describes events from Pre-Mauryan to Harsha\'s period?',
+      options: ['Milindpannaho', 'Divyavadan', 'Aryamanjushrimulkalpa', 'Mahabharata'],
+      answer: 'Aryamanjushrimulkalpa'
+    },
+    {
+      question: 'The Pali texts are associated with:',
+      options: ['Jainism', 'Hinduism', 'Buddhism', 'Sikhism'],
+      answer: 'Buddhism'
+    },
+    {
+      question: 'The purpose of the Upanishads is to explore:',
+      options: ['Rituals for the afterlife', 'Spiritual learning and the nature of the soul', 'Ancient scientific knowledge', 'Kingship and governance'],
+      answer: 'Spiritual learning and the nature of the soul'
+    },
+    {
+      question: 'Which text is associated with the duties of kings and social laws?',
+      options: ['Puranas', 'Smritis', 'Vedas', 'Upanishads'],
+      answer: 'Smritis'
+    },
+    {
+      question: 'The Mahabharata war is dated to approximately:',
+      options: ['400 BC', '950 BC', '1,000 BC', '500 BC'],
+      answer: '950 BC'
+    },
+    {
+      question: 'Which of the following describes social and economic life in North-West India?',
+      options: ['Milindpannaho', 'Aryamanjushrimulkalpa', 'Sutta Pitaka', 'Shatapatha Brahmana'],
+      answer: 'Milindpannaho'
+    },
+    {
+      question: 'Which of the following texts is an important source for constructing Mauryan history?',
+      options: ['Tripitaka', 'Deep Vansha', 'Aryamanjushrimulkalpa', 'Shatapatha Brahmana'],
+      answer: 'Deep Vansha'
+    }
+        ];
+
+        // Function to dynamically display the quiz questions and options
+        function displayQuestions() {
+            const quizForm = document.getElementById('quizForm');
+            questions.forEach((question, index) => {
+                const questionDiv = document.createElement('div');
+                const questionText = document.createElement('p');
+                questionText.textContent = question.question;
+                questionDiv.appendChild(questionText);
+
+                question.options.forEach(option => {
+                    const label = document.createElement('label');
+                    label.innerHTML = `
+                        <input type="radio" name="answer${index}" value="${option}" required> ${option}
+                    `;
+                    questionDiv.appendChild(label);
+                    questionDiv.appendChild(document.createElement('br'));
+                });
+
+                quizForm.appendChild(questionDiv);
+                quizForm.appendChild(document.createElement('hr'));
+            });
+        }
+
+        // Function to calculate the score
+        function calculateScore() {
+            let score = 0;
+            questions.forEach((question, index) => {
+                const selectedAnswer = document.querySelector(`input[name="answer${index}"]:checked`);
+                if (selectedAnswer && selectedAnswer.value === question.answer) {
+                    score++;
+                }
+            });
+
+            // Display the score
+            document.getElementById('score').style.display = 'block';
+            document.getElementById('scoreValue').textContent = score;
+            document.getElementById('totalQuestions').textContent = questions.length;
+        }
+
+        // Add event listener to the submit button
+        document.getElementById('submitBtn').addEventListener('click', calculateScore);
+
+        // Initialize the quiz
+        displayQuestions();
+    </script>
+
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn and Earn Profile</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <style>
+    /* Reset and Box Sizing */
+    * {
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body Styling */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff;
+      color: #001f54;
+      padding-top: 60px; /* Ensure content is not hidden behind the fixed navbar */
+    }
+
+    /* Top Navigation Bar */
+    .topnav {
+      position: fixed; /* Fix the navbar to the top */
+      top: 0; /* Stick to the top */
+      left: 0;
+      right: 0;
+      z-index: 1000; /* Ensure the navbar stays on top of other elements */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #001f54;
+      padding: 10px 20px;
+      flex-wrap: nowrap;
+    }
+
+    .topnav .logo {
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: #ddd;
+    }
+
+    .topnav a {
+      text-decoration: none;
+      color: #ddd;
+      padding: 10px 16px;
+      text-align: center;
+    }
+
+    .topnav a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+
+    .topnav .nav-links {
+      display: flex;
+      gap: 10px;
+    }
+
+    @media screen and (max-width: 600px) {
+      .topnav {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* Header */
+    .header {
+      background-color: #e7f0fc;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .header .logo {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    .categories {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .category {
+      width: 300px;
+      background-color: #f0f8ff;
+      border: 2px solid #001f54;
+      border-radius: 10px;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: transform 0.3s, background-color 0.3s;
+    }
+
+    .category label {
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 800px;
+      padding: 20px;
+      background-color: #e7f0fc;
+      box-shadow: 0px 0px 20px 4px rgb(47 53 109);
+      border-radius: 8px;
+    }
+
+    h2 {
+      color: #2a3d66;
+    }
+
+    ul {
+      list-style-type: disc;
+      margin-left: 20px;
+    }
+
+    p {
+      line-height: 1.6;
+    }
+
+    .section {
+      margin-bottom: 20px;
+    }
+    /* Submit Button Styles */
+#submitBtn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.1em;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#submitBtn:hover {
+    background-color: #218838;
+}
+  </style>
+</head>
+<body>
+  <!-- Top Navigation Bar -->
+  <div class="topnav">
+    <div class="logo">LOGO</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">Introduction to History</div>
+  </header>
+
+  <!-- MCQ Section -->
+  <section class="mcq">
+    <div class="categories">
+      <div class="category">
+        <div class="container">
+
+            
+    <main>
+        <h2>Test your knowledge!</h2>
+        <form id="quizForm">
+            <!-- Quiz questions will be inserted here dynamically -->
+        </form>
+        <button type="button" id="submitBtn">Submit Quiz</button>
+        <p id="score" style="display: none;">Your score: <span id="scoreValue"></span> / <span id="totalQuestions"></span></p>
+
+    </main>
+
+    <script>
+        // Quiz questions and options
+        const questions = [
+    {
+      question: 'When were Jain texts finalized?',
+      options: ['6th century BC', '2nd century AD', '6th century AD', '12th century AD'],
+      answer: '6th century AD'
+    },
+    {
+      question: 'Where was the 2nd Jain Mahasabha held?',
+      options: ['Ujjain', 'Vallabhi, Gujarat', 'Pataliputra', 'Mathura'],
+      answer: 'Vallabhi, Gujarat'
+    },
+    {
+      question: 'Which text contains disciplinary rules for Jain monks?',
+      options: ['Bhagawati Sutra', 'Acharanga Sutra', 'Namadhamma Katha Sutra', 'Vivagasuyam Sutra'],
+      answer: 'Acharanga Sutra'
+    },
+    {
+      question: 'What does the Bhagawati Sutra describe?',
+      options: ['Life of Mahavira and list of 16 Mahajanapadas', 'Rules for Jain monks', 'Karma Phala', 'Life of Bhadrabahu'],
+      answer: 'Life of Mahavira and list of 16 Mahajanapadas'
+    },
+    {
+      question: 'Which text focuses on the preachings of Mahavira?',
+      options: ['Bhagawati Sutra', 'Namadhamma Katha Sutra', 'Acharanga Sutra', 'Parishishtaparva'],
+      answer: 'Namadhamma Katha Sutra'
+    },
+    {
+      question: 'What does the Vivagasuyam Sutra discuss?',
+      options: ['Life stories of Jain monks', 'Fruits of actions (Karma Phala)', 'Administration details', 'Greek invasions'],
+      answer: 'Fruits of actions (Karma Phala)'
+    },
+    {
+      question: 'Which text provides glimpses of Mauryan king Chandragupta Maurya?',
+      options: ['Parishishtaparva', 'Bhadrabahu Charita', 'Bhagawati Sutra', 'Navasahasanka Charita'],
+      answer: 'Bhadrabahu Charita'
+    },
+    {
+      question: 'Who authored Parishishtaparva?',
+      options: ['Kalhana', 'Hemchandra', 'Banabhatta', 'Vakpatiraj'],
+      answer: 'Hemchandra'
+    },
+    {
+      question: 'What is the most historically important Jain text?',
+      options: ['Acharanga Sutra', 'Parishishtaparva', 'Bhagawati Sutra', 'Vivagasuyam Sutra'],
+      answer: 'Parishishtaparva'
+    },
+    {
+      question: 'What is Kautilya’s Arthashastra known for?',
+      options: ['Insights into Gupta monarchy', 'Grammar rules', 'Detailed information on administration and social life', 'Jain preachings'],
+      answer: 'Detailed information on administration and social life'
+    },
+    {
+      question: 'Kamandaka’s Neetisar provides insights into:',
+      options: ['Jain texts', 'Gupta monarchy', 'Greek invasions', 'Scythian culture'],
+      answer: 'Gupta monarchy'
+    },
+    {
+      question: 'Which text resembles Aristotle’s Politics?',
+      options: ['Parishishtaparva', 'Arthashastra', 'Shukraneetisar', 'Mudrarakshasa'],
+      answer: 'Arthashastra'
+    },
+    {
+      question: 'What is the focus of Shukraneetisar?',
+      options: ['Jain monk life stories', 'Monarchy and state machinery', 'Karma philosophy', 'Greek invasions'],
+      answer: 'Monarchy and state machinery'
+    },
+    {
+      question: 'Who authored Rajatarangini?',
+      options: ['Kalhana', 'Hemchandra', 'Patanjali', 'Banabhatta'],
+      answer: 'Kalhana'
+    },
+    {
+      question: 'Which region does Rajatarangini primarily focus on?',
+      options: ['Gujarat', 'Kashmir', 'Magadha', 'Sindh'],
+      answer: 'Kashmir'
+    },
+    {
+      question: 'What is the Chachanama about?',
+      options: ['Jain preachings', 'Conquest of Sindh by Muhammad Bin Qasim', 'Life of Mahavira', 'Administration during Harsha’s reign'],
+      answer: 'Conquest of Sindh by Muhammad Bin Qasim'
+    },
+    {
+      question: 'Who translated the Chachanama?',
+      options: ['Hemchandra', 'Ali Bin Hamid Kufi', 'Kalhana', 'Banabhatta'],
+      answer: 'Ali Bin Hamid Kufi'
+    },
+    {
+      question: 'Panini’s Ashtadhyayi is primarily a:',
+      options: ['Grammar text', 'Historical account', 'Jain text', 'Biography of Chandragupta Maurya'],
+      answer: 'Grammar text'
+    },
+    {
+      question: 'Which text mentions Greek and Scythian invasions?',
+      options: ['Mudrarakshasa', 'Gargi Samhita (Yug Puran)', 'Acharanga Sutra', 'Arthashastra'],
+      answer: 'Gargi Samhita (Yug Puran)'
+    },
+    {
+      question: 'Patanjali’s Mahabhashya is a commentary on:',
+      options: ['Gargi Samhita', 'Ashtadhyayi', 'Parishishtaparva', 'Neetivakyamrita'],
+      answer: 'Ashtadhyayi'
+    },
+    {
+      question: 'Kalidasa’s Malvikagnimitra describes:',
+      options: ['Life of Mahavira', 'Shunga dynasty’s political conditions', 'Karma philosophy', 'Conquest of Sindh'],
+      answer: 'Shunga dynasty’s political conditions'
+    },
+    {
+      question: 'Vishakhadatta’s Mudrarakshasa is associated with:',
+      options: ['Chandragupta Maurya and Chanakya', 'Mauryan administration', 'Jain monk preachings', 'Harsha’s court life'],
+      answer: 'Chandragupta Maurya and Chanakya'
+    },
+    {
+      question: 'Banabhatta’s Harsha Charita provides details about:',
+      options: ['Jain texts', 'Harshavardhana’s reign', 'Greek invasions', 'Shunga dynasty'],
+      answer: 'Harshavardhana’s reign'
+    },
+    {
+      question: 'Who authored Harsha Charita?',
+      options: ['Hemchandra', 'Banabhatta', 'Kalhana', 'Ali Bin Hamid Kufi'],
+      answer: 'Banabhatta'
+    },
+    {
+      question: 'Gaudvaho describes the victories of:',
+      options: ['Yashovarman', 'Chandragupta Maurya', 'Harsha', 'Alexander'],
+      answer: 'Yashovarman'
+    },
+    {
+      question: 'Who authored Navasahasanka Charita?',
+      options: ['Vakpatiraj', 'Padmagupta', 'Kalidasa', 'Banabhatta'],
+      answer: 'Padmagupta'
+    },
+    {
+      question: 'Navasahasanka Charita is about:',
+      options: ['Life of Vakpati Munj', 'Life of Mahavira', 'Jain monks’ stories', 'Administration during Harsha’s reign'],
+      answer: 'Life of Vakpati Munj'
+    },
+    {
+      question: 'Which text chronicles the life of Bhoja?',
+      options: ['Mudrarakshasa', 'Bhoja Prabandha', 'Harsha Charita', 'Parishishtaparva'],
+      answer: 'Bhoja Prabandha'
+    },
+    {
+      question: 'What is the focus of Hemchandra’s Parishishtaparva?',
+      options: ['Jain teachings', 'History of Jain Acharyas', 'Life of Mahavira', 'Life of Chandragupta Maurya'],
+      answer: 'Life of Chandragupta Maurya'
+    },
+    {
+      question: 'Which text provides insights into Pre-Mauryan political life?',
+      options: ['Parishishtaparva', 'Ashtadhyayi', 'Gargi Samhita', 'Harsha Charita'],
+      answer: 'Ashtadhyayi'
+    }
+        ];
+
+        // Function to dynamically display the quiz questions and options
+        function displayQuestions() {
+            const quizForm = document.getElementById('quizForm');
+            questions.forEach((question, index) => {
+                const questionDiv = document.createElement('div');
+                const questionText = document.createElement('p');
+                questionText.textContent = question.question;
+                questionDiv.appendChild(questionText);
+
+                question.options.forEach(option => {
+                    const label = document.createElement('label');
+                    label.innerHTML = `
+                        <input type="radio" name="answer${index}" value="${option}" required> ${option}
+                    `;
+                    questionDiv.appendChild(label);
+                    questionDiv.appendChild(document.createElement('br'));
+                });
+
+                quizForm.appendChild(questionDiv);
+                quizForm.appendChild(document.createElement('hr'));
+            });
+        }
+
+        // Function to calculate the score
+        function calculateScore() {
+            let score = 0;
+            questions.forEach((question, index) => {
+                const selectedAnswer = document.querySelector(`input[name="answer${index}"]:checked`);
+                if (selectedAnswer && selectedAnswer.value === question.answer) {
+                    score++;
+                }
+            });
+
+            // Display the score
+            document.getElementById('score').style.display = 'block';
+            document.getElementById('scoreValue').textContent = score;
+            document.getElementById('totalQuestions').textContent = questions.length;
+        }
+
+        // Add event listener to the submit button
+        document.getElementById('submitBtn').addEventListener('click', calculateScore);
+
+        // Initialize the quiz
+        displayQuestions();
+    </script>
+
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
